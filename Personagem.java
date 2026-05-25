@@ -16,6 +16,9 @@ public abstract class Personagem{
     public ArrayList<Musica> getRepertorio(){
         return repertorio;
     }
+    public ArrayList<String> getMochila(){
+        return mochila;
+    }
     
     public void gerarColecao(){
         colecao.add(new Musica("Time"));
@@ -109,6 +112,13 @@ public abstract class Personagem{
                 break;
         }
     }
+    public void ganharItem(String item){
+        this.mochila.add(item);
+    }
+
+    public void perderItem(int idItem){
+        this.mochila.remove(idItem);
+    }
 
     abstract void realizarAcaoAleatoria();
 
@@ -137,28 +147,8 @@ public abstract class Personagem{
         return false;
     }
 
-    // void duelar(Personagem inimigo){
-    //     if(repertorio.size() == 0){
-    //         return;
-    //     }
-    //     else{
-    //         var gerador = new Random();
-    //         var qualeAmusica = gerador.nextInt(0, repertorio.size());
-    //         Musica ataque = repertorio.get(qualeAmusica);
-    //         if (inimigo.repertorio.contains(ataque)){
-    //             this.dano();
-    //             inimigo.dano();
-    //             System.out.println("\nO publico ficou entediado.");
-    //         }
-    //         else{
-    //             inimigo.dano();
-    //             inimigo.novaMusica(ataque);
-    //             System.out.println("\n"+inimigo.nome+" foi vencido pelo ineditismo de "+this.nome);
-    //         }
-
-    //     }
-    // }
-
+    public abstract void duelar(Personagem inimigo);
+    
     public String toString(){
         var sb = new StringBuilder("");
         if(estaMorto()){

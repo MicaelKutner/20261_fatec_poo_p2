@@ -56,4 +56,26 @@ public class Bardo extends Personagem {
                 }
             }
     }
+    @Override
+    public void duelar(Personagem inimigo) {
+        if(getRepertorio().size() == 0){
+            return;
+        }
+        else{
+            var gerador = new Random();
+            var qualeAmusica = gerador.nextInt(0, getRepertorio().size());
+            Musica ataque = getRepertorio().get(qualeAmusica);
+            if (inimigo.getRepertorio().contains(ataque)){
+                this.dano();
+                inimigo.dano();
+                System.out.println("\nO publico ficou entediado.");
+            }
+            else{
+                inimigo.dano();
+                inimigo.novaMusica(ataque);
+                System.out.println("\n"+inimigo.nome+" foi vencido pelo ineditismo de "+this.nome);
+            }
+
+        }
+    }
 }

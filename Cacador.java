@@ -50,4 +50,26 @@ public class Cacador extends Personagem {
             }
         }
     }
+    @Override
+    public void duelar(Personagem inimigo) {
+        if(getMochila().size() == 0){
+            return;            
+        }
+        else{
+            var gerador = new Random();
+            var qualeItem = gerador.nextInt(0, getMochila().size());
+            String ataque = getMochila().get(qualeItem);
+            if (inimigo.getMochila().contains(ataque)){
+                this.dano();
+                inimigo.dano();
+                System.out.println("\nO publico ficou entediado.");
+            }
+            else{
+                inimigo.dano();
+                inimigo.ganharItem(ataque);
+                this.perderItem(qualeItem);
+                System.out.println("\n"+inimigo.nome+" foi vencido pelo ineditismo de "+this.nome);
+            }
+        }
+    }
 }
